@@ -37,6 +37,7 @@ class Importer
   def import
     begin
       (1..200).each do |page|
+        puts "Importing page #{page}"
         import_chunk page
       end
     rescue Done
