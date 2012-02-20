@@ -8,9 +8,10 @@ require 'date'
 class Importer
   attr_reader :screen_name
 
-  def initialize(name)
+  def initialize(name, page=1)
     @screen_name = name
     @new_last_id = 0
+    @begin_page = page.to_i
     restore_last_id
   end
 
@@ -36,7 +37,7 @@ class Importer
 
   def import
     begin
-      (1..200).each do |page|
+      (@begin_page..@begin_page+199).each do |page|
         puts "Importing page #{page}"
         import_chunk page
       end
@@ -61,7 +62,7 @@ class Importer
 
   def handle_tweet(tweet)
     @new_last_id = [ @new_last_id, tweet.id ].max
-    if tweet.id <= @last_id
+    if @begin_page == 1 and tweet.id <= @last_id
       raise Done
     end
     unless tweet.reply?
@@ -116,4 +117,4 @@ class Tweet
   end
 end
 
-Importer.new(ARGV[0]).import
+Importer.new(*ARGV).import
