@@ -15,8 +15,12 @@ class Importer
     restore_last_id
   end
 
+  def storage_path
+    "#{ENV['HOME']}/Dropbox/Journal.dayone"
+  end
+
   def last_id_path
-    "#{ENV['HOME']}/Dropbox/Journal.dayone/tweets_last_id.txt"
+    "#{storage_path}/tweets_last_id.txt"
   end
 
   def restore_last_id
