@@ -103,7 +103,7 @@ class Tweet
   end
 
   def url
-    "https://twitter.com/#!/#{@data['user']['screen_name']}/status/#{id_str}"
+    "http://twitter.com/#{@data['user']['screen_name']}/status/#{id_str}"
   end
 
   def text
