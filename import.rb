@@ -102,8 +102,10 @@ class Tweet
 
   def text
     text = @data['text']
-    @data['entities']['urls'].each do |entity|
-      text.gsub! /#{entity['url']}/, entity['expanded_url']
+    if @data.key?('entities') and @data['entities'].key?('urls')
+      @data['entities']['urls'].each do |entity|
+        text.gsub! /#{entity['url']}/, entity['expanded_url']
+      end
     end
     text
   end
