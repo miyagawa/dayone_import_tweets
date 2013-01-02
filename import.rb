@@ -16,7 +16,7 @@ class Importer
   end
 
   def storage_path
-    "#{ENV['HOME']}/Dropbox/Journal.dayone"
+    "#{ENV['HOME']}/.dayone"
   end
 
   def last_id_path
