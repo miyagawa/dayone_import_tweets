@@ -76,7 +76,7 @@ class Importer
 
   def import_tweet(tweet)
     Open3.popen3('dayone', "-d=#{tweet.localtime}", 'new') do |stdin, stdout, stderr|
-      stdin.write(tweet.text + " via " + tweet.url)
+      stdin.write(tweet.text + " " + tweet.url)
       stdin.close_write
       puts stdout.read
     end
